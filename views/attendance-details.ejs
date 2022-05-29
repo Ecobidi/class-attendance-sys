@@ -1,0 +1,56 @@
+<%- include ('partials/top') %>
+  <div class="row space">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+        <h3 class="page-title">Class Attendance Report</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 card">
+      <div class="card-header">
+        <p>Course Code: <%= attendance.course_code %></p>
+        <p>Department: <%= attendance.department %></p>
+        <p>Session: <%= attendance.session %></p>
+        <p>Date: <%= attendance.date.toDateString() %></p>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead class="font-weight-bold">
+            <tr>
+              <td>#</td>
+              <td>Reg. No</td>
+              <td>Student Name</td>
+              <td>Status</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% attendance.attendance_list.forEach((m, i) => { %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%= m.student_reg_no %></td>
+                <td><%= m.student_name %></td>
+                <td>
+                  <% if (m.attendance_status == 'present') { %>
+                    <span class="badge badge-pill badge-success p-2">Present</span>
+                  <% } else { %>
+                    <span class="badge badge-pill badge-danger p-2">Absent</span>
+                  <% } %>
+                </td>
+                
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
+</div>
+  
+
+<%- include ('partials/bottom') %>
